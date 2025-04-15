@@ -1,0 +1,20 @@
+version: '2.1'
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    hostname: my-nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certs:/etc/nginx/certs/
+      - ./nginxlogs:/var/log/nginx
+    ports:
+      - 443:443
+        # - 8443:8443
+    networks:
+      - iopex_network
+
+networks:
+  iopex_network:
+    name: iopex_network
+    external: true
